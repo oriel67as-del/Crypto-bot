@@ -1,4 +1,4 @@
-coxt
+coxt=4.2.18
 pandas
 ta
 requests
