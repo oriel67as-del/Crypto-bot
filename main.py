@@ -8,8 +8,7 @@ from datetime import datetime
 
 # Settings
 
-BITGET_API_KEY = os.environ.get("BITGET_API_KEY")
-
+BITGET_API_KEY = os.environ.get(“BITGET_API_KEY”, “”)
 BITGET_API_SECRET = os.environ.get(“BITGET_API_SECRET”, “”)
 BITGET_PASSPHRASE = os.environ.get(“BITGET_PASSPHRASE”, “”)
 TELEGRAM_BOT_TOKEN = os.environ.get(“TELEGRAM_BOT_TOKEN”, “”)
@@ -87,7 +86,7 @@ pass
 def get_data(symbol):
 try:
 candles = exchange.fetch_ohlcv(symbol, TIMEFRAME, limit=100)
-df = pd.DataFrame(candles, columns=[‘timestamp’,‘open’,‘high’,‘low’,‘close’,‘volume’])
+df = pd.DataFrame(candles, columns=[‘timestamp’, ‘open’, ‘high’, ‘low’, ‘close’, ‘volume’])
 return df
 except Exception as e:
 print(f”Error {symbol.split(’/’)[0]}: {e}”)
@@ -161,13 +160,13 @@ if side == "BUY":
     tp = price + tp_dist
     liq_target = sl * (1 - LIQ_BUFFER)
     leverage = int(price / (price - liq_target))
-    liq = price / (1 + 1/max(leverage, 1))
+    liq = price / (1 + 1 / max(leverage, 1))
 else:
     sl = price + sl_dist
     tp = price - tp_dist
     liq_target = sl * (1 + LIQ_BUFFER)
     leverage = int(price / (liq_target - price))
-    liq = price / (1 - 1/max(leverage, 1))
+    liq = price / (1 - 1 / max(leverage, 1))
 
 leverage = max(1, min(leverage, MAX_LEVERAGE))
 risk_amount = ACCOUNT_SIZE * RISK_PCT
