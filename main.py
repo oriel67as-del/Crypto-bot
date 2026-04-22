@@ -8,7 +8,8 @@ from datetime import datetime
 
 # Settings
 
-BITGET_API_KEY = os.environ.get(“BITGET_API_KEY”, “”)
+BITGET_API_KEY = os.environ.get("BITGET_API_KEY")
+
 BITGET_API_SECRET = os.environ.get(“BITGET_API_SECRET”, “”)
 BITGET_PASSPHRASE = os.environ.get(“BITGET_PASSPHRASE”, “”)
 TELEGRAM_BOT_TOKEN = os.environ.get(“TELEGRAM_BOT_TOKEN”, “”)
