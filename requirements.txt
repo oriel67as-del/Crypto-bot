@@ -1,0 +1,4 @@
+coxt=4.2.18
+pandas=2.0.3
+ta=0.10.2
+requests=2.31.0
